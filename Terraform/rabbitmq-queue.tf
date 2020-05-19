@@ -29,4 +29,12 @@ resource "rabbitmq_queue" "hello" {
   }
 }
 
+resource "rabbitmq_queue" "production" {
+  name  = "production"
+  vhost = "${rabbitmq_permissions.guest.vhost}"
 
+  settings {
+    durable     = true
+    auto_delete = false
+  }
+}
